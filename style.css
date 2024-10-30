@@ -1,0 +1,98 @@
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+* {
+	margin: 0;
+}
+
+:root {
+	--scroll-duration: 30s;
+}
+
+body {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	background-color: #aa4848;
+	height: 100vh;
+}
+
+.container {
+	height: 95%;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: space-evenly;
+}
+
+.vertical-slide {
+	position: relative;
+	overflow: hidden;
+	margin: 20px 0;
+	width: 24.8%;
+	height: 100%;
+	mask-image: linear-gradient(
+		to bottom,
+		rgba(0, 0, 0, 0),
+		rgba(0, 0, 0, 1) 20%,
+		rgba(0, 0, 0, 1) 80%,
+		rgba(0, 0, 0, 0)
+	);
+}
+
+.item {
+	width: 100%;
+	height: 12.5vh; 
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: absolute;
+	overflow: hidden;
+	cursor: pointer;
+	transition:  0.5s ease-in-out, z-index 0s 0.5s;
+}
+
+.item:hover {
+	height: 605px; 
+	z-index: 99; 
+	max-width: 100%;
+}
+
+.vertical-slide:hover .item {
+	animation-play-state: paused;
+}
+
+.item img {
+	width: 100%;
+	object-fit: cover;
+}
+
+@keyframes scrollUp {
+	from {
+		top: 100%;
+	}
+	to {
+		top: -100px;
+	}
+}
+
+@keyframes scrollDown {
+	from {
+		top: -100px;
+	}
+	to {
+		top: 100%;
+	}
+}
+
+.toUp .item {
+	animation: scrollUp var(--scroll-duration) linear infinite;
+}
+
+.toDown .item {
+	animation: scrollDown var(--scroll-duration) linear infinite;
+}
